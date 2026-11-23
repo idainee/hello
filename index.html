@@ -189,6 +189,7 @@
         <details>
           <summary><span class="closed">상세 보기</span><span class="opened">접기</span><span> · 사진</span></summary>
           <p>같은 풍경도 빛이 드는 시간이나 카메라를 드는 각도에 따라 달라 보여요. 나중에 사진을 보면서 그날의 분위기를 떠올리는 것도 좋아해요.</p>
+          <p>하늘, 풍경, 인물 사진을 찍는 걸 좋아해요. 디지털카메라나 올드 아이폰으로도 사진을 자주 찍어요.</p>
         </details>
       </article>
       <article class="card">
@@ -197,6 +198,13 @@
         <details>
           <summary><span class="closed">상세 보기</span><span class="opened">접기</span><span> · 음악</span></summary>
           <p>멜로디가 좋아서 듣기 시작한 노래도 다시 들으면 가사가 새롭게 와닿을 때가 있어요. 마음에 드는 곡은 여러 번 반복해서 들어요.</p>
+          <p>좋아하는 가수는 창모(래퍼)예요.</p>
+          <p><strong>가장 많이 들은 곡 Top 3</strong></p>
+          <ol>
+            <li>Countin my guap</li>
+            <li>널 지워야 해</li>
+            <li>Light Me Up</li>
+          </ol>
         </details>
       </article>
       <article class="card">
@@ -204,7 +212,7 @@
         <p>팀원과 호흡을 맞추며 플레이하는 재미를 좋아해요.</p>
         <details>
           <summary><span class="closed">상세 보기</span><span class="opened">접기</span><span> · 게임</span></summary>
-          <p>오버워치처럼 한 판마다 상황이 달라지는 게임을 즐겨요. 팀원과 타이밍을 맞춰 좋은 장면을 만들었을 때 특히 뿌듯해요.</p>
+          <p>오버워치처럼 한 판마다 상황이 달라지는 게임을 즐겨요. 팀원과 타이밍을 맞춰 좋은 장면을 만들었을 때 특히 뿌듯해요. 오버워치 프로 대회 영상도 보면서 팀의 움직임과 판단을 살피고, 게임을 보는 눈을 키워가고 있어요.</p>
         </details>
       </article>
     </div>
@@ -246,19 +254,19 @@
   function animate(time) {
     const delta = previousTime === null ? 0 : Math.min(time - previousTime, 50);
     previousTime = time;
-    elapsed = (elapsed + delta) % 7000;
+    elapsed = (elapsed + delta) % 5000;
 
     const ease = 1 - Math.exp(-delta / 115);
     x += (targetX - x) * ease;
     y += (targetY - y) * ease;
     scrollOffset += (clamp(window.scrollY * .08, 0, 20) - scrollOffset) * ease;
 
-    const float = Math.sin(elapsed / 7000 * Math.PI * 2) * 5;
+    const float = Math.sin(elapsed / 5000 * Math.PI * 2) * 5;
     const tilt = clamp(x * 4, -4, 4);
     scene.style.transform = `translate(${x * 8}px, ${y * 4 + float - scrollOffset}px) rotate(${tilt}deg)`;
     if (desktop.matches) {
       monitorElapsed = (monitorElapsed + delta) % 5000;
-      const offset = Math.sin(monitorElapsed / 5000 * Math.PI * 2) * 10;
+      const offset = Math.sin(monitorElapsed / 5000 * Math.PI * 2) * 5;
       monitor.style.transform = `translateY(${offset}px)`;
     }
     frameId = requestAnimationFrame(animate);

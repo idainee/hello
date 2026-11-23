@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>박다인 | 자기소개</title>
+<style>
+  :root {
+    color-scheme: light;
+    --ink: #302731;
+    --muted: #65545f;
+    --pink: #f9dce7;
+    --line: #ecd4df;
+    --accent: #963b65;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff8fa; color: var(--ink); font: 1rem/1.7 system-ui, "Malgun Gothic", sans-serif; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+  header { position: sticky; top: 0; z-index: 2; background: #fff8fa; border-bottom: 1px solid var(--line); }
+  .wrap { width: min(1100px, calc(100% - 32px)); margin-inline: auto; }
+  .nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px 16px; padding-block: 10px; }
+  .brand { font-weight: 800; }
+  .nav a { text-decoration: none; }
+  .nav ul { display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 0; margin: 0; list-style: none; }
+  .nav li a { display: inline-block; padding-block: 6px; }
+  .nav a:hover, summary:hover { color: var(--accent); }
+  section { scroll-margin-top: 104px; }
+  .hero { display: grid; grid-template-columns: 1fr 1.08fr; align-items: center; gap: clamp(18px, 4vw, 54px); padding-block: clamp(34px, 7vw, 86px) 46px; }
+  .hero > * { min-width: 0; }
+  h1, h2, p, figure { margin: 0; }
+  h1 { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 1.12; letter-spacing: -.075em; }
+  h2 { font-size: 1.55rem; letter-spacing: -.04em; margin-bottom: .55em; }
+  .school { color: var(--accent); font-weight: 750; margin-top: 16px; }
+  .intro { margin-top: 14px; color: var(--muted); max-width: 32em; word-break: keep-all; }
+  .button { display: inline-flex; align-items: center; border: 1px solid transparent; border-radius: 999px; padding: 10px 17px; font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; }
+  .primary { background: var(--ink); color: white; margin-top: 22px; }
+  .primary:hover { background: #51394a; }
+  .studio { min-width: 0; background: var(--pink); border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 16px 35px #542a4310; }
+  .stage { padding: 30px 26px 10px; overflow: hidden; border-radius: 28px 28px 0 0; }
+  .scene-motion svg { display: block; width: 100%; height: auto; }
+  figcaption { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 18px 16px; }
+  figcaption span { font-weight: 750; }
+  .motion-button { background: #fff8fa; border-color: var(--line); color: var(--ink); padding: 5px 12px; font-size: .85rem; }
+  .motion-button:disabled { cursor: default; }
+  .motion-button[hidden] { display: none; }
+  .cards, .profiles { display: grid; gap: 14px; }
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
+  .profiles { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-block: 22px 46px; }
+  .card { padding: 20px; border-radius: 20px; border: 1px solid var(--line); background: #fff; }
+  .card h3 { margin: 0 0 6px; font-size: 1.12rem; }
+  .card p { color: var(--muted); word-break: keep-all; }
+  details { margin-top: 12px; }
+  details p { margin-top: 8px; }
+  summary { cursor: pointer; color: var(--accent); font-weight: 750; }
+  details[open] .closed, details:not([open]) .opened { display: none; }
+  footer { background: var(--ink); color: #fff0f5; padding-block: 17px; font-size: .9rem; }
+  @media (max-width: 720px) {
+    .hero, .cards, .profiles { grid-template-columns: 1fr; }
+    .studio { width: min(100%, 520px); }
+    .stage { padding: 28px 16px 6px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .scene-motion { transform: none !important; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <nav class="wrap nav" aria-label="주 메뉴">
+    <a class="brand" href="#intro">박다인</a>
+    <ul>
+      <li><a href="#intro">소개</a></li>
+      <li><a href="#hobbies">취미</a></li>
+      <li><a href="#personality">성격</a></li>
+      <li><a href="#strengths">장점</a></li>
+    </ul>
+  </nav>
+</header>
+<main class="wrap">
+  <section class="hero" id="intro" aria-labelledby="title">
+    <div>
+      <h1 id="title">안녕하세요,<br>박다인입니다.</h1>
+      <p class="school">가톨릭대학교 · 국어국문학과(1전공) · 경영학과(2전공)</p>
+      <p class="intro">국어국문학을 공부하며 글을 읽고 해석하는 재미를 느끼고, 경영학을 공부하며 사람들의 선택과 기업의 활동을 살펴보고 있습니다. 평소에는 사진으로 일상을 남기고, 노래와 게임을 즐깁니다.</p>
+      <a class="button primary" href="#hobbies">취미 구경하기 ↓</a>
+    </div>
+    <figure class="studio">
+      <div class="stage">
+        <div class="scene-motion">
+          <svg viewBox="0 0 480 340" role="img" aria-labelledby="art-title">
+            <title id="art-title">분홍빛 간접 조명이 켜진 작업실에서 둥근 캐릭터가 흰 책상 위 게이밍 모니터를 보고 있다. 모니터에는 데이터 차트가 있고 책상에는 머그컵이 놓여 있다.</title>
+            <defs>
+              <linearGradient id="wall" x2="0" y2="1" gradientUnits="objectBoundingBox">
+                <stop stop-color="#423342"/><stop offset="1" stop-color="#6e4a65"/>
+              </linearGradient>
+              <radialGradient id="glow">
+                <stop stop-color="#ff9ed0" stop-opacity=".96"/><stop offset="1" stop-color="#ff9ed0" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="screen" x2="1" y2="1">
+                <stop stop-color="#3e3046"/><stop offset="1" stop-color="#251f2f"/>
+              </linearGradient>
+              <linearGradient id="body" x2="0" y2="1">
+                <stop stop-color="#fff7fa"/><stop offset="1" stop-color="#edacca"/>
+              </linearGradient>
+              <filter id="shadow" x="-30%" y="-40%" width="160%" height="190%">
+                <feDropShadow dx="0" dy="7" stdDeviation="7" flood-color="#311c32" flood-opacity=".38"/>
+              </filter>
+              <clipPath id="room"><rect width="480" height="340" rx="25"/></clipPath>
+            </defs>
+            <g clip-path="url(#room)">
+              <path fill="url(#wall)" d="M0 0h480v340H0z"/>
+              <ellipse cx="246" cy="137" rx="218" ry="149" fill="url(#glow)"/>
+              <path fill="#412e43" d="M0 264h480v76H0z"/>
+              <path d="M56 58v22m-11-11h22M421 80v16m-8-8h16" stroke="#f5bad7" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="401" cy="52" r="3" fill="#ffe7f3"/>
+              <g filter="url(#shadow)">
+                <path d="M70 260h104v69H70zm273 0h16v69h-16z" fill="#e6d5e2"/>
+                <rect x="79" y="278" width="86" height="19" rx="4" fill="#fff6fb"/>
+                <path d="M111 287h22" stroke="#b17f9f" stroke-width="3" stroke-linecap="round"/>
+                <path d="M73 225h317l30 28H44z" fill="#fff"/>
+                <path d="M44 253h376v9a7 7 0 0 1-7 7H51a7 7 0 0 1-7-7z" fill="#ead9e8"/>
+              </g>
+              <g filter="url(#shadow)">
+                <path d="M224 183h23v41l38 8v5h-99v-5l38-8z" fill="#392e40"/>
+                <rect x="114" y="64" width="244" height="137" rx="13" fill="#302636" stroke="#b984a8" stroke-width="3"/>
+                <rect x="126" y="76" width="220" height="109" rx="7" fill="url(#screen)"/>
+                <path d="M146 156h178m-178-24h178m-178-24h178" stroke="#6c536e" opacity=".75"/>
+                <path d="M158 164v-22h14v22m12 0v-36h14v36m12 0v-28h14v28m12 0v-49h14v49" fill="#d989b3"/>
+                <path d="m154 133 33-14 32 6 43-25 24 8 32-15" fill="none" stroke="#ffe1ef" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+                <circle cx="318" cy="93" r="4" fill="#ffe1ef"/>
+                <path d="M223 192h26" stroke="#f7a3cb" stroke-width="3" stroke-linecap="round"/>
+              </g>
+              <path d="M183 242h102l7 8H175z" fill="#ba94ae"/>
+              <path d="M190 245h89" stroke="#fff1fa" stroke-width="2" stroke-dasharray="5 3"/>
+              <g filter="url(#shadow)">
+                <path d="M372 206c20-6 24 17 3 20" fill="none" stroke="#ffcade" stroke-width="6"/>
+                <path d="M352 202h25l-2 25a8 8 0 0 1-8 7h-5a8 8 0 0 1-8-7z" fill="#ffc3dc"/>
+                <ellipse cx="364.5" cy="202" rx="12.5" ry="4" fill="#fff0f6"/>
+                <ellipse cx="364.5" cy="202" rx="8.5" ry="2" fill="#915a73"/>
+              </g>
+              <g filter="url(#shadow)">
+                <ellipse cx="280" cy="321" rx="70" ry="11" fill="#302133" opacity=".65"/>
+                <ellipse cx="254" cy="310" rx="20" ry="10" fill="#e6a5c6"/>
+                <ellipse cx="305" cy="310" rx="20" ry="10" fill="#e6a5c6"/>
+                <path d="M222 270c-5-23 7-40 23-41 15-15 47-14 63 0 15 0 30 21 25 45-2 29-24 42-55 42s-57-15-56-46z" fill="url(#body)"/>
+                <path d="M226 260c0-48 102-49 104 0" fill="none" stroke="#583e57" stroke-width="7"/>
+                <rect x="218" y="253" width="17" height="31" rx="8" fill="#6c4b68"/>
+                <rect x="322" y="253" width="17" height="31" rx="8" fill="#6c4b68"/>
+                <circle cx="261" cy="270" r="4" fill="#50354c"/>
+                <circle cx="295" cy="270" r="4" fill="#50354c"/>
+                <ellipse cx="250" cy="280" rx="7" ry="4" fill="#e996b7"/>
+                <ellipse cx="306" cy="280" rx="7" ry="4" fill="#e996b7"/>
+                <path d="M274 278q4 6 9 0" fill="none" stroke="#50354c" stroke-width="2.5" stroke-linecap="round"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <figcaption>
+        <span>작은 데이터 작업실</span>
+        <button class="button motion-button" type="button" hidden>움직임 멈추기</button>
+      </figcaption>
+    </figure>
+  </section>
+  <section id="hobbies" aria-labelledby="hobbies-title">
+    <h2 id="hobbies-title">취미와 관심사</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>사진 찍기</h3>
+        <p>평범한 하루에서 마음에 드는 장면을 남겨요.</p>
+        <details>
+          <summary><span class="closed">상세 보기</span><span class="opened">접기</span><span> · 사진</span></summary>
+          <p>같은 풍경도 빛이 드는 시간이나 카메라를 드는 각도에 따라 달라 보여요. 나중에 사진을 보면서 그날의 분위기를 떠올리는 것도 좋아해요.</p>
+        </details>
+      </article>
+      <article class="card">
+        <h3>노래 듣기</h3>
+        <p>그날의 기분에 어울리는 노래를 골라 들어요.</p>
+        <details>
+          <summary><span class="closed">상세 보기</span><span class="opened">접기</span><span> · 음악</span></summary>
+          <p>멜로디가 좋아서 듣기 시작한 노래도 다시 들으면 가사가 새롭게 와닿을 때가 있어요. 마음에 드는 곡은 여러 번 반복해서 들어요.</p>
+        </details>
+      </article>
+      <article class="card">
+        <h3>게임하기</h3>
+        <p>팀원과 호흡을 맞추며 플레이하는 재미를 좋아해요.</p>
+        <details>
+          <summary><span class="closed">상세 보기</span><span class="opened">접기</span><span> · 게임</span></summary>
+          <p>오버워치처럼 한 판마다 상황이 달라지는 게임을 즐겨요. 팀원과 타이밍을 맞춰 좋은 장면을 만들었을 때 특히 뿌듯해요.</p>
+        </details>
+      </article>
+    </div>
+  </section>
+  <div class="profiles">
+    <section class="card" id="personality">
+      <h2>성격</h2>
+      <p>한 가지 일도 여러 각도에서 생각해 보는 편이에요. 궁금한 점이 생기면 이유를 알아보고, 일이 끝난 뒤에는 어떤 점이 좋았는지 돌아봅니다.</p>
+    </section>
+    <section class="card" id="strengths">
+      <h2>장점</h2>
+      <p>여러 정보를 읽고 핵심을 정리하는 데 강점이 있어요. 과제나 발표를 준비할 때도 자료의 근거를 확인하고, 처음 듣는 사람이 따라오기 쉽도록 순서를 다듬습니다.</p>
+    </section>
+  </div>
+</main>
+<footer><div class="wrap">박다인 · 가톨릭대학교</div></footer>
+<script>
+  const scene = document.querySelector('.scene-motion');
+  const stage = document.querySelector('.stage');
+  const button = document.querySelector('.motion-button');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const mouse = matchMedia('(any-hover: hover) and (any-pointer: fine)');
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+  let paused = false;
+  let frameId = null;
+  let previousTime = null;
+  let elapsed = 0;
+  let targetX = 0;
+  let targetY = 0;
+  let x = 0;
+  let y = 0;
+  let scrollOffset = 0;
+
+  function animate(time) {
+    const delta = previousTime === null ? 0 : Math.min(time - previousTime, 50);
+    previousTime = time;
+    elapsed = (elapsed + delta) % 7000;
+
+    const ease = 1 - Math.exp(-delta / 115);
+    x += (targetX - x) * ease;
+    y += (targetY - y) * ease;
+    scrollOffset += (clamp(window.scrollY * .08, 0, 20) - scrollOffset) * ease;
+
+    const float = Math.sin(elapsed / 7000 * Math.PI * 2) * 5;
+    const tilt = clamp(x * 4, -4, 4);
+    scene.style.transform = `translate(${x * 8}px, ${y * 4 + float - scrollOffset}px) rotate(${tilt}deg)`;
+    frameId = requestAnimationFrame(animate);
+  }
+
+  function clearPointer() {
+    targetX = 0;
+    targetY = 0;
+  }
+
+  stage.addEventListener('pointermove', (event) => {
+    if (!mouse.matches || event.pointerType !== 'mouse' || paused || reduced.matches) return;
+    const bounds = stage.getBoundingClientRect();
+    targetX = clamp((event.clientX - bounds.left) / bounds.width * 2 - 1, -1, 1);
+    targetY = clamp((event.clientY - bounds.top) / bounds.height * 2 - 1, -1, 1);
+  });
+  stage.addEventListener('pointerleave', clearPointer);
+  stage.addEventListener('pointercancel', clearPointer);
+  mouse.addEventListener('change', clearPointer);
+
+  function syncMotion() {
+    button.disabled = reduced.matches;
+    button.textContent = reduced.matches ? '동작 줄이기 적용 중' :
+      paused ? '움직임 재생' : '움직임 멈추기';
+
+    if (paused || reduced.matches || document.hidden) {
+      if (frameId !== null) cancelAnimationFrame(frameId);
+      frameId = null;
+      previousTime = null;
+      clearPointer();
+      if (reduced.matches) {
+        x = y = elapsed = scrollOffset = 0;
+        scene.style.transform = '';
+      }
+    } else if (frameId === null) {
+      frameId = requestAnimationFrame(animate);
+    }
+  }
+
+  button.addEventListener('click', () => {
+    paused = !paused;
+    syncMotion();
+  });
+  reduced.addEventListener('change', syncMotion);
+  document.addEventListener('visibilitychange', syncMotion);
+  button.hidden = false;
+  syncMotion();
+</script>
+</body>
+</html>

@@ -42,7 +42,7 @@
   figcaption { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 18px 16px; }
   figcaption span { font-weight: 750; }
   .motion-button { background: #fff8fa; border-color: var(--line); color: var(--ink); padding: 5px 12px; font-size: .85rem; }
-  .motion-button:disabled { cursor: default; }
+  .motion-button[aria-pressed="true"] { background: var(--ink); color: white; }
   .motion-button[hidden] { display: none; }
   .cards, .profiles { display: grid; gap: 14px; }
   .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
@@ -59,9 +59,6 @@
     .hero, .cards, .profiles { grid-template-columns: 1fr; }
     .studio { width: min(100%, 520px); }
     .stage { padding: 28px 16px 6px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .scene-motion { transform: none !important; }
   }
 </style>
 </head>
@@ -106,6 +103,7 @@
               <filter id="shadow" x="-30%" y="-40%" width="160%" height="190%">
                 <feDropShadow dx="0" dy="7" stdDeviation="7" flood-color="#311c32" flood-opacity=".38"/>
               </filter>
+              <clipPath id="monitor-screen"><rect x="126" y="76" width="220" height="109" rx="7"/></clipPath>
               <clipPath id="room"><rect width="480" height="340" rx="25"/></clipPath>
             </defs>
             <g clip-path="url(#room)">
@@ -125,13 +123,17 @@
                 <path d="M224 183h23v41l38 8v5h-99v-5l38-8z" fill="#392e40"/>
                 <rect x="114" y="64" width="244" height="137" rx="13" fill="#302636" stroke="#b984a8" stroke-width="3"/>
                 <rect x="126" y="76" width="220" height="109" rx="7" fill="url(#screen)"/>
-                <circle cx="294" cy="111" r="17" fill="#ffc6dd"/>
-                <path d="M126 179l53-46 31 23 36-32 62 55z" fill="#70587f"/>
-                <path d="M126 179l40-18 31 11 42-13 44 20 63-25v31H126z" fill="#a874a1"/>
-                <path d="M154 104v12m-6-6h12m62-13v10m-5-5h10m97 25v8m-4-4h8" stroke="#ffe1ef" stroke-width="2" stroke-linecap="round"/>
-                <path d="M166 89c3-4 7 0 4 3l-4 4-4-4c-3-3 1-7 4-3zm15 0c3-4 7 0 4 3l-4 4-4-4c-3-3 1-7 4-3zm15 0c3-4 7 0 4 3l-4 4-4-4c-3-3 1-7 4-3z" fill="#f497bf"/>
-                <path d="M233 150l-10 18 10-4 10 4z" fill="#fff0f7"/>
-                <path d="M231 171h4l-2 7z" fill="#ffc084"/>
+                <g clip-path="url(#monitor-screen)">
+                  <g class="monitor-motion">
+                    <circle cx="294" cy="111" r="17" fill="#ffc6dd"/>
+                    <path d="M126 179l53-46 31 23 36-32 62 55z" fill="#70587f"/>
+                    <path d="M126 179l40-18 31 11 42-13 44 20 63-25v31H126z" fill="#a874a1"/>
+                    <path d="M154 104v12m-6-6h12m62-13v10m-5-5h10m97 25v8m-4-4h8" stroke="#ffe1ef" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M166 89c3-4 7 0 4 3l-4 4-4-4c-3-3 1-7 4-3zm15 0c3-4 7 0 4 3l-4 4-4-4c-3-3 1-7 4-3zm15 0c3-4 7 0 4 3l-4 4-4-4c-3-3 1-7 4-3z" fill="#f497bf"/>
+                    <path d="M233 150l-10 18 10-4 10 4z" fill="#fff0f7"/>
+                    <path d="M231 171h4l-2 7z" fill="#ffc084"/>
+                  </g>
+                </g>
                 <path d="M223 192h26" stroke="#f7a3cb" stroke-width="3" stroke-linecap="round"/>
               </g>
               <path d="M183 242h102l7 8H175z" fill="#ba94ae"/>
@@ -174,7 +176,7 @@
       </div>
       <figcaption>
         <span>나만의 게이밍룸</span>
-        <button class="button motion-button" type="button" hidden>움직임 멈추기</button>
+        <button class="button motion-button" type="button" aria-pressed="false" hidden>동작 줄이기</button>
       </figcaption>
     </figure>
   </section>
@@ -221,16 +223,20 @@
 <footer><div class="wrap">박다인 · 가톨릭대학교</div></footer>
 <script>
   const scene = document.querySelector('.scene-motion');
+  const monitor = document.querySelector('.monitor-motion');
+  const desktop = matchMedia('(min-width: 721px) and (hover: hover) and (pointer: fine)');
   const stage = document.querySelector('.stage');
   const button = document.querySelector('.motion-button');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const mouse = matchMedia('(any-hover: hover) and (any-pointer: fine)');
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
-  let paused = false;
+  let motionPreference = null;
+  const motionReduced = () => motionPreference ?? reduced.matches;
   let frameId = null;
   let previousTime = null;
   let elapsed = 0;
+  let monitorElapsed = 0;
   let targetX = 0;
   let targetY = 0;
   let x = 0;
@@ -250,6 +256,11 @@
     const float = Math.sin(elapsed / 7000 * Math.PI * 2) * 5;
     const tilt = clamp(x * 4, -4, 4);
     scene.style.transform = `translate(${x * 8}px, ${y * 4 + float - scrollOffset}px) rotate(${tilt}deg)`;
+    if (desktop.matches) {
+      monitorElapsed = (monitorElapsed + delta) % 5000;
+      const offset = Math.sin(monitorElapsed / 5000 * Math.PI * 2) * 10;
+      monitor.style.transform = `translateY(${offset}px)`;
+    }
     frameId = requestAnimationFrame(animate);
   }
 
@@ -259,7 +270,7 @@
   }
 
   stage.addEventListener('pointermove', (event) => {
-    if (!mouse.matches || event.pointerType !== 'mouse' || paused || reduced.matches) return;
+    if (!mouse.matches || event.pointerType !== 'mouse' || motionReduced()) return;
     const bounds = stage.getBoundingClientRect();
     targetX = clamp((event.clientX - bounds.left) / bounds.width * 2 - 1, -1, 1);
     targetY = clamp((event.clientY - bounds.top) / bounds.height * 2 - 1, -1, 1);
@@ -269,26 +280,30 @@
   mouse.addEventListener('change', clearPointer);
 
   function syncMotion() {
-    button.disabled = reduced.matches;
-    button.textContent = reduced.matches ? '동작 줄이기 적용 중' :
-      paused ? '움직임 재생' : '움직임 멈추기';
+    const isReduced = motionReduced();
+    button.setAttribute('aria-pressed', String(isReduced));
 
-    if (paused || reduced.matches || document.hidden) {
+    if (isReduced || document.hidden) {
       if (frameId !== null) cancelAnimationFrame(frameId);
       frameId = null;
       previousTime = null;
       clearPointer();
-      if (reduced.matches) {
-        x = y = elapsed = scrollOffset = 0;
-        scene.style.transform = '';
-      }
-    } else if (frameId === null) {
+    }
+    if (isReduced) {
+      x = y = elapsed = monitorElapsed = scrollOffset = 0;
+      scene.style.transform = '';
+      monitor.style.transform = '';
+    } else if (!document.hidden && frameId === null) {
       frameId = requestAnimationFrame(animate);
     }
   }
 
+  desktop.addEventListener('change', () => {
+    monitorElapsed = 0;
+    monitor.style.transform = '';
+  });
   button.addEventListener('click', () => {
-    paused = !paused;
+    motionPreference = !motionReduced();
     syncMotion();
   });
   reduced.addEventListener('change', syncMotion);
